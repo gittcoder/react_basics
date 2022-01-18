@@ -29,6 +29,15 @@ class App extends Component
           user:user
         })
     }
+    componentDidMount()
+    {
+      console.log("Component Mounted !!");
+    }
+    componentDidUpdate(prevProps,PrevState)
+    {
+      console.log("Component Updated !!");
+      console.log(prevProps,PrevState);
+    }
     render()
     {
   return (
