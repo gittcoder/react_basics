@@ -1,14 +1,33 @@
-import Hello from './Hello'
+import User from './User'
 import React, { Component} from 'react';
+import Add_user from './Add_user'
 
 class App extends Component
 {
     state={
-      hello : [
+      user : [
         {name:'adi', age:19 , about:'Nothing',id:1},
         {name:'axi', age:29 , about:'something',id:2},
         {name:'azi', age:39 , about:'Everything',id:3}
       ]
+    }
+
+    addUser=(usr) =>
+    {
+      usr.id = Math.random();
+      let h=[...this.state.user,usr]
+      this.setState({
+        user: h
+      })
+    }
+    deleteUser = (id) =>
+    {
+        let user = this.state.user.filter(ninja =>{
+          return ninja.id !== id
+        });
+        this.setState({
+          user:user
+        })
     }
     render()
     {
@@ -18,8 +37,8 @@ class App extends Component
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        {/* <Hello name ="adi" age="19" about="nothing" /> */}
-        <Hello hello={this.state.hello}/>
+        {/* <User name ="adi" age="19" about="nothing" /> */}
+        <User deleteUser={this.deleteUser} user={this.state.user}/>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -28,7 +47,7 @@ class App extends Component
         >
           Learn React
         </a>
-        
+        <Add_user addUser={this.addUser} />
       </header>
     </div>
   );
